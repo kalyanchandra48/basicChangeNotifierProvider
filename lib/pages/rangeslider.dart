@@ -4,7 +4,10 @@ import 'package:syncfusion_flutter_core/theme.dart';
 import 'package:syncfusion_flutter_core/core.dart';
 
 import 'package:syncfusion_flutter_sliders/sliders.dart';
-import 'services/changeheight.dart';
+import '../services/changeheight.dart';
+import '../main.dart';
+
+import 'package:provider/provider.dart';
 
 class SliderW extends StatefulWidget {
   @override
@@ -13,8 +16,10 @@ class SliderW extends StatefulWidget {
 
 class _SliderWState extends State<SliderW> {
   @override
-  double _value = 50;
+  double value = 0;
   Widget build(BuildContext context) {
+    ChangingHeight providerData = Provider.of<ChangingHeight>(context);
+    print(providerData.heightChange);
     return SfSliderTheme(
       data: SfSliderThemeData(
         thumbColor: Colors.white,
@@ -24,13 +29,13 @@ class _SliderWState extends State<SliderW> {
         inactiveTrackColor: Colors.grey,
       ),
       child: SfSlider(
-        min: 50,
+        min: 0,
         max: 300.0,
-        enableTooltip: false,
-        value: _value,
+        enableTooltip: true,
+        value: providerData.heightChange,
         onChanged: (dynamic newValue) {
           setState(() {
-            _value = newValue;
+            providerData.UpdatedHeight = newValue;
           });
         },
       ),

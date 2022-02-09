@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-
-import 'pages/container.dart';
-import 'pages/rangeslider.dart';
+import 'package:flutter/foundation.dart';
+import '../pages/container.dart';
+import '../pages/rangeslider.dart';
 
 class ChangingHeight extends ChangeNotifier{
+	double heightChange = 70;
   double get height => heightChange;
 
-  double set UpdatedHeight(newValue) {
-    _value = height;
-    notifylisteners();
+  set UpdatedHeight(value) {
+    heightChange = value;
+    notifyListeners();
   }
 }
